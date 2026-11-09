@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Sustentabilidad</title>
+    <link rel="stylesheet" href="{% static 'sustentabilidad/css/styles.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <h1> Panel de Control: EcoTech Solutions</h1>
+            <p class="subtitle">Auditoría y métricas de emisiones de carbono por planta industrial</p>
+        </header>
+
+        <!-- Tarjetas de métricas presentadas en cuadrícula -->
+        <section class="metrics-grid">
+            <div class="card highlight">
+                <span class="metric-title">Total Global de Emisiones</span>
+                <div class="metric-value">
+                    {{ total_emisiones|floatformat:2 }} <span class="unit">kg CO₂</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="metric-title">Planta de Mayor Consumo</span>
+                <div class="metric-value">
+                    {% if planta_mayor_consumo %}
+                        <span class="badge">{{ planta_mayor_consumo }}</span>
+                    {% else %}
+                        <span class="unit">Sin datos</span>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de tabla estilizada -->
+        <section class="table-section">
+            <h2>Desglose por Planta</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Planta Industrial</th>
+                            <th>Emisiones Calculadas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for planta, emision in detalles_emisiones.items %}
+                        <tr>
+                            <td><strong>{{ planta }}</strong></td>
+                            <td>{{ emision|floatformat:2 }} kwh </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="2" class="empty-msg">No hay registros de emisiones disponibles.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

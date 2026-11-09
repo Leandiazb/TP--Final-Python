@@ -1,0 +1,18 @@
+[
+    {
+        "codigo": "PS-001",
+        "nombre": "Panel Pro",
+        "precio": 250000.0,
+        "stock": 10,
+        "potencia_w": 450,
+        "eficiencia": 21.5
+    },
+    {
+        "codigo": "PS-002",
+        "nombre": "Panel Flexible Eco",
+        "precio": 120000.0,
+        "stock": 5,
+        "potencia_w": 150,
+        "eficiencia": 18.0
+    }
+]
